@@ -1,0 +1,83 @@
+---
+title: "R Markdown and Leaflet"
+author: "Vandita Singh"
+date: "2026-09-20"
+output: html_document
+---
+
+---
+title: "Exploring Manipal"
+author: "Vandita Singh"
+output:
+  html_document:
+    self_contained: true
+---
+
+# My Interactive Map
+
+**Date Created:** `r format(Sys.Date(), "%B %d, %Y")`
+
+This webpage presents an interactive map created using the **Leaflet** package in R. The map highlights Manipal and a few interesting locations around the campus area.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+library(leaflet)
+```
+
+## Interactive Map of Manipal
+
+```{r map}
+leaflet() %>%
+  addTiles() %>%
+  setView(
+    lng = 74.7850,
+    lat = 13.3500,
+    zoom = 14
+  ) %>%
+  addMarkers(
+    lng = 74.7850,
+    lat = 13.3500,
+    popup = "<b>Manipal</b><br>My university town"
+  ) %>%
+  addCircleMarkers(
+    lng = 74.7925,
+    lat = 13.3520,
+    radius = 8,
+    popup = "<b>MIT Manipal</b><br>Manipal Institute of Technology",
+    label = "MIT Manipal"
+  ) %>%
+  addCircleMarkers(
+    lng = 74.7890,
+    lat = 13.3505,
+    radius = 8,
+    popup = "<b>Manipal Lake</b><br>A popular location in Manipal",
+    label = "Manipal Lake"
+  ) %>%
+  addCircleMarkers(
+    lng = 74.7840,
+    lat = 13.3540,
+    radius = 8,
+    popup = "<b>End Point</b><br>A scenic location in Manipal",
+    label = "End Point"
+  ) %>%
+  addControl(
+    html = "<h4 style='margin:5px;'>My Manipal Map</h4>",
+    position = "topright"
+  )
+```
+
+## About the Map
+
+The map above is interactive. You can:
+
+- Zoom in and out using the **+** and **−** buttons.
+- Move around the map.
+- Click on the markers to see information about each location.
+- Hover over markers to see their labels.
+
+The map was created using the **Leaflet** package in R.
+
+## Conclusion
+
+This webpage demonstrates how R Markdown can be used to combine written content with an interactive geographic visualization. Leaflet makes it possible to create an interactive map directly within an HTML webpage.
